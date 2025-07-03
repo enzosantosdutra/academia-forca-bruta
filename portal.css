@@ -1,0 +1,416 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d1810 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.header h1 {
+    color: #ff6b35;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 10px rgba(255, 107, 53, 0.3);
+    margin-bottom: 1rem;
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #ff6b35, #ff8e35, #ffaa35);
+    border-radius: 2px;
+}
+
+/* ===== SEÇÕES ===== */
+.section {
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 107, 53, 0.1);
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.5s ease;
+}
+
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ff6b35, #ff8e35, #ffaa35);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section h2 {
+    color: #ff6b35;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ===== MENSAGENS ===== */
+.success-message {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.5s ease;
+    display: none;
+}
+
+.success-message.show {
+    opacity: 1;
+    transform: translateY(0);
+    display: block;
+}
+
+.success-message.error {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+}
+
+/* ===== FORMULÁRIOS ===== */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+label {
+    color: #ffaa35;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+input, select {
+    padding: 1rem;
+    border: 2px solid #2d1810;
+    border-radius: 12px;
+    background: rgba(45, 24, 16, 0.5);
+    color: #ffffff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #ff6b35;
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+    transform: scale(1.02);
+}
+
+input::placeholder {
+    color: #cccccc;
+}
+
+/* ===== SELEÇÃO DE OBJETIVOS ===== */
+.objetivos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.objetivo-card {
+    background: rgba(45, 24, 16, 0.5);
+    border: 2px solid #2d1810;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.objetivo-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+    animation: rotate 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.objetivo-card:hover::before {
+    opacity: 1;
+}
+
+@keyframes rotate {
+    to { transform: rotate(360deg); }
+}
+
+.objetivo-card:hover {
+    border-color: #ff6b35;
+    background: rgba(255, 107, 53, 0.1);
+    transform: translateY(-5px);
+}
+
+.objetivo-card.selected {
+    border-color: #ff6b35;
+    background: linear-gradient(135deg, #ff6b35, #ff8e35);
+    color: #ffffff;
+}
+
+.objetivo-card h3 {
+    color: #ffaa35;
+    margin: 0;
+    font-size: 1.1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.objetivo-card.selected h3 {
+    color: #ffffff;
+}
+
+.objetivo-card p {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== BOTÕES ===== */
+.btn-primary, .btn-secondary {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #ff6b35, #ff8e35);
+    color: #ffffff;
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #ffaa35, #ff8e35);
+    color: #ffffff;
+}
+
+.btn-primary::before, .btn-secondary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover::before, .btn-secondary:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(255, 107, 53, 0.4);
+}
+
+/* ===== TREINOS ===== */
+.treinos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.treino-card {
+    background: rgba(45, 24, 16, 0.5);
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.treino-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ff6b35, #ff8e35);
+}
+
+.treino-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.2);
+    border-color: #ff6b35;
+}
+
+.treino-card h3 {
+    color: #ff6b35;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.treino-info {
+    margin-bottom: 0.8rem;
+}
+
+.treino-info strong {
+    color: #ffaa35;
+    display: inline-block;
+    min-width: 100px;
+}
+
+.treino-info span {
+    color: #ffffff;
+}
+
+/* ===== BOTÕES DE AÇÃO ===== */
+.actions-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+/* ===== ANIMAÇÃO DE TREINOS ===== */
+#treinos-section {
+    animation: slideInUp 0.8s ease;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .section {
+        padding: 1.5rem;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .objetivos-container {
+        grid-template-columns: 1fr;
+    }
+
+    .treinos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .actions-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* ===== ANIMAÇÕES DE CARREGAMENTO ===== */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

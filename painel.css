@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+    --laranja-intenso: #ff6b35;
+    --laranja-medio: #ff8e35;
+    --cinza-escuro: #1a1a1a;
+    --marrom-escuro: #2d1810;
+    --branco: #ffffff;
+    --cinza-claro: #cccccc;
+    --cor-fundo-widget: rgba(26, 26, 26, 0.5);
+    --cor-borda-widget: rgba(255, 107, 53, 0.2);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, var(--marrom-escuro) 0%, var(--cinza-escuro) 100%);
+    color: var(--cinza-claro);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.dashboard-container { display: flex; width: 100%; }
+
+/* --- Sidebar --- */
+.sidebar {
+    width: 260px;
+    background: rgba(10, 10, 10, 0.4);
+    backdrop-filter: blur(15px);
+    border-right: 1px solid var(--cor-borda-widget);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease;
+}
+.sidebar-header { text-align: center; margin-bottom: 3rem; }
+.sidebar-header h3 { color: var(--laranja-intenso); font-size: 2rem; font-weight: 700; }
+.sidebar-links { list-style: none; flex-grow: 1; }
+.sidebar-links a {
+    color: var(--cinza-claro);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+.sidebar-links a i { margin-right: 1rem; }
+.sidebar-links a:hover { background: var(--cor-fundo-widget); color: var(--branco); }
+.sidebar-links a.active {
+    background: var(--laranja-intenso);
+    color: var(--branco);
+    box-shadow: 0 4px 20px rgba(255, 107, 53, 0.4);
+}
+.sidebar-footer a { text-decoration: none; color: var(--cinza-claro); display: flex; align-items: center; padding: 1rem; }
+.sidebar-footer a:hover { color: var(--branco); }
+
+/* --- Main Content --- */
+.main-content {
+    flex: 1;
+    padding: 2rem 3rem;
+    overflow-y: auto;
+}
+.main-header h1 { font-size: 2.5rem; font-weight: 700; color: var(--branco); }
+.main-header p { font-size: 1.2rem; color: var(--cinza-claro); margin-top: 0.5rem; }
+
+/* --- Widgets --- */
+.widgets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-top: 2.5rem;
+}
+.widget {
+    background: var(--cor-fundo-widget);
+    border: 1px solid var(--cor-borda-widget);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+.widget-header { display: flex; align-items: center; color: var(--laranja-medio); margin-bottom: 1.5rem; }
+.widget-header i { margin-right: 0.8rem; }
+.widget-header h2 { font-size: 1.2rem; font-weight: 600; color: var(--branco); }
+
+/* Treino do Dia Widget */
+.exercise-list { list-style: none; }
+.exercise-list li {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem; border-bottom: 1px solid var(--cor-borda-widget);
+}
+.exercise-list li:last-child { border-bottom: none; }
+.exercise-list label { font-weight: 600; }
+.exercise-list span { color: var(--cinza-claro); font-size: 0.9rem; }
+
+/* Progresso Widget */
+.chart-container { position: relative; height: 300px; }
